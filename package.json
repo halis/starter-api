@@ -1,0 +1,22 @@
+{
+  "name": "starter-api",
+  "version": "1.0.0",
+  "description": "starter for REST services that work with PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mvolkmann/starter-api.git"
+  },
+  "author": "R. Mark Volkmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mvolkmann/starter-api/issues"
+  },
+  "homepage": "https://github.com/mvolkmann/starter-api#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
