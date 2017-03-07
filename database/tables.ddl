@@ -1,8 +1,9 @@
 create extension pgcrypto; -- needed to encrypt passwords
 
-create table ice_creams (
+create table projects (
   id serial primary key,
-  flavor varchar(50)
+  name varchar(50),
+  description varchar(256)
 );
 
 create table users (
@@ -10,7 +11,7 @@ create table users (
   password varchar(60) -- encrypted length
 );
 
-create table user_ice_creams (
+create table user_projects (
   username varchar(50) references users (username),
-  ice_cream_id integer references ice_creams (id)
+  project_id integer references projects (id)
 );

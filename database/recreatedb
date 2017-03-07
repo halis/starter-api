@@ -1,4 +1,4 @@
-db=ice_cream
+db=launchpad
 dropdb $db
 createdb $db
 psql $db -f tables.ddl
