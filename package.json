@@ -18,7 +18,7 @@
   "scripts": {
     "coverage": "cross-env CI=true npm test -- --coverage",
     "lint": "eslint --quiet src __tests__ --ext .js,.jsx",
-    "start": "sudo nodemon lib/index.js",
+    "start": "sudo -E nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
     "verify": "npm run lint && cross-env CI=true npm test"
   },
