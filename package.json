@@ -20,10 +20,9 @@
     "lint": "eslint --quiet src __tests__ --ext .js,.jsx",
     "start": "sudo -E nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
-    "verify": "npm run lint && cross-env CI=true npm test"
+    "verify": "npm run lint && cross-env CI=true npm test",
+    "preinstall": "yarn global add nodemon"
   },
   "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  }
+  "devDependencies": {}
 }
