@@ -68,6 +68,12 @@ This will run docker-compose to stand up two containers: `api` and `db`
 
 We also **expose the ports** for these containers in the host machine, so you can test locally:
 In a browser visit: https://localhost/project
+*Note: This invokes a REST service to retrieve all the current projects. If this is being run for the first time, press "ADVANCED" and "Proceed to localhost (unsafe)" to allow using HTTPS with this domain.*
+
+Or you could test the api in Postman:
+GET https://localhost/project
+
+Also since the database port is exposed to your host, you can connect to the database in the container with your favorite Postgres client such as pgAdmin.
 
 Here are some useful docker aliases for this project:
 ```bash
