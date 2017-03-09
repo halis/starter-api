@@ -1,7 +1,8 @@
 #!/bin/sh
 
 echo ""
-echo "*** creating tables for database $POSTGRES_DB ***"
+echo "****** BEGIN ******"
+echo "****** CREATING AND SEEDING DATABASE '$POSTGRES_DB' ******"
 echo ""
 
 psql -U $POSTGRES_USER -d $POSTGRES_DB <<- EOSQL
@@ -23,8 +24,26 @@ psql -U $POSTGRES_USER -d $POSTGRES_DB <<- EOSQL
     username varchar(50) references users (username),
     project_id integer references projects (id)
   );
+
+  insert into users values ('launchpad', 'launchpad');
+  insert into users values ('mark', 'launchpad');
+  insert into users values ('tyler', 'launchpad');
+  insert into users values ('chris', 'launchpad');
+
+  insert into projects (id, name, description) values (1, 'launchpad-project', 'launchpad test project');
+  insert into projects (id, name, description) values (2, 'mark-project', 'mark test project');
+  insert into projects (id, name, description) values (3, 'tyler-project', 'tyler test project');
+  insert into projects (id, name, description) values (4, 'chris-project', 'chris test project');
+
+  insert into user_projects values ('launchpad', 1);
+  insert into user_projects values ('mark', 1);
+  insert into user_projects values ('tyler', 1);
+  insert into user_projects values ('chris', 1);
+  insert into user_projects values ('mark', 2);
+  insert into user_projects values ('tyler', 3);
+  insert into user_projects values ('chris', 4);
 EOSQL
 
 echo ""
-echo "*** tables created for database $POSTGRES_DB ***"
+echo "****** END ******"
 echo ""
