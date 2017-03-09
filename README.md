@@ -94,7 +94,7 @@ Alpine Linux is used in the containers to keep the size and build times down. Be
 
 The ENV variable `POSTGRES_HOST` defaults to `db` which is the name used in `docker-compose.yml`. Docker adds an entry to `/etc/hosts` in the api container because of the link setup to the db container. This allows you to connect to host `db` via `PGConnection`.
 
-The `-p launchpad` parameter for `dup` and `ddown` scopes all containers to the `project` launchpad. Which allows you to easily bring all containers up and down.
+The `-p launchpad` parameter for `dup` and `ddown` scopes all containers to the `project` launchpad. This allows you to easily bring all containers up and down.
 
 It is important to note that the `--volumes` flag in alias  `ddown` will remove any associated volumes. In this case the volume for Postgres is deleted each time you run ddown or dup.
 
