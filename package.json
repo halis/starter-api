@@ -18,10 +18,10 @@
   "scripts": {
     "coverage": "cross-env CI=true npm test -- --coverage",
     "lint": "eslint --quiet src __tests__ --ext .js,.jsx",
+    "preinstall": "yarn global add nodemon",
     "start": "sudo -E nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
-    "verify": "npm run lint && cross-env CI=true npm test",
-    "preinstall": "yarn global add nodemon"
+    "verify": "npm run lint && cross-env CI=true npm test"
   },
   "license": "MIT",
   "devDependencies": {}
