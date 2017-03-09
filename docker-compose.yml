@@ -1,4 +1,11 @@
 
+ui:
+  container_name: ui
+  image: launchpad_ui:latest
+  expose:
+    - "3000"
+  ports:
+    - "3000:3000"
 db:
   container_name: db
   restart: always
