@@ -78,7 +78,8 @@ Also since the database port is exposed to your host, you can connect to the dat
 Here are some useful docker aliases for this project:
 ```bash
 # Usage: ddown
-alias ddown="docker-compose -p launchpad down --volumes"
+alias ddown="docker-compose -p launchpad down"
+alias ddownhard="docker-compose -p launchpad down --volumes"
 
 # Usage: dkimages
 alias dkimages="docker rmi $(docker images -f 'dangling=true' -q) || echo No images to kill"
