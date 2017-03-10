@@ -20,6 +20,8 @@
     "cover": "npm-run-all cover:*",
     "cover:gen": "cross-env CI=true npm test -- --coverage",
     "cover:open": "open coverage/lcov-report/index.html",
+    "dbstart": "pg_ctl -D /usr/local/var/postgres start",
+    "dbstop": "pg_ctl -D /usr/local/var/postgres stop -m fast",
     "efr": "eslint-find-rules --unused .eslintrc.json --no-error",
     "flow": "flow",
     "fmt": "npm-run-all -s link-project _format",

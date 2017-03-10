@@ -2,15 +2,16 @@
 # Starter API
 
 This is a REST server that uses a PostgreSQL database.
-It requires configuring the root user in PostgreSQL.
+It requires configuring a user in PostgreSQL.
 
 This can be done with these commands:
-```bash
+````bash
+sudo -u postgres createuser launchpad
 psql -d launchpad
-create role root superuser;
-alter role root with login;
-press ctrl-d
-```
+alter user launchpad PASSWORD 'launchpad';
+grant all privileges on all tables in schema public to launchpad;
+ctrl-d
+````
 
 To start the PostgreSQL server, enter:
 pg_ctl -D /usr/local/var/postgres start
