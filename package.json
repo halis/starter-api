@@ -16,13 +16,25 @@
     "socket.io": "^1.7.3"
   },
   "scripts": {
-    "coverage": "cross-env CI=true npm test -- --coverage",
-    "lint": "eslint --quiet src __tests__ --ext .js,.jsx",
+    "_format": "prettier-eslint --write \"src/**/*.js\"",
+    "cover": "npm-run-all cover:*",
+    "cover:gen": "cross-env CI=true npm test -- --coverage",
+    "cover:open": "open coverage/lcov-report/index.html",
+    "efr": "eslint-find-rules --unused .eslintrc.json --no-error",
+    "flow": "flow",
+    "fmt": "npm-run-all -s link-project _format",
+    "fmt-dev": " npm-run-all -s link-dev _format",
+    "lint": "npm-run-all lint:**",
+    "lint:js": "eslint --quiet src __tests__ --ext .js,.jsx",
+    "postcommit": "npm run _format",
     "preinstall": "yarn global add nodemon",
+    "prepush": "npm run verify",
     "start": "sudo -E nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
     "verify": "npm run lint && cross-env CI=true npm test"
   },
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "npm-run-all": "^4.0.2"
+  }
 }
