@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "node-token-auth": "^1.0.0",
     "pg": "^6.1.3",
@@ -17,12 +18,11 @@
   "scripts": {
     "coverage": "cross-env CI=true npm test -- --coverage",
     "lint": "eslint --quiet src __tests__ --ext .js,.jsx",
-    "start": "sudo nodemon lib/index.js",
+    "preinstall": "yarn global add nodemon",
+    "start": "sudo -E nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
     "verify": "npm run lint && cross-env CI=true npm test"
   },
   "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^1.11.0"
-  }
+  "devDependencies": {}
 }

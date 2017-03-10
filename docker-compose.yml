@@ -1,0 +1,41 @@
+
+ui:
+  container_name: ui
+  image: launchpad_ui:latest
+  expose:
+    - "3000"
+  ports:
+    - "3000:3000"
+db:
+  container_name: db
+  restart: always
+  build: ./database
+  expose:
+    - "${POSTGRES_PORT}"
+  ports:
+    - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+  environment:
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_HOST
+    - POSTGRES_DB
+    - POSTGRES_PORT
+    - POSTGRES_POOL
+    - POSTGRES_TIMEOUT
+api:
+  container_name: api
+  build: .
+  links:
+    - db
+  environment:
+    - POSTGRES_USER
+    - POSTGRES_PASSWORD
+    - POSTGRES_HOST
+    - POSTGRES_DB
+    - POSTGRES_PORT
+    - POSTGRES_POOL
+    - POSTGRES_TIMEOUT
+  expose:
+    - "443"
+  ports:
+    - "443:443"
