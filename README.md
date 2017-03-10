@@ -63,6 +63,7 @@ In a shell run:
 dup
 ```
 *NOTE: `dup` is an alias. To review the actual command see the `aliases` below*
+*NOTE: The db container expects to expose 5432 to your host machine. If you already have postgres running locally you will need to stop your server to avoid a conflict.*
 
 This will run docker-compose to stand up two containers: `api` and `db`
 *NOTE: These containers know how to talk to each other via docker networking.*
