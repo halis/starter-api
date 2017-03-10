@@ -80,7 +80,7 @@ Here are some useful docker aliases for this project:
 ```bash
 # Usage: ddown
 alias ddown="docker-compose -p launchpad down"
-alias ddownhard="docker-compose -p launchpad down --volumes"
+alias dbreset="ddown && docker volume rm dbvolume"
 
 # Usage: dkimages
 alias dkimages="docker rmi $(docker images -f 'dangling=true' -q) || echo No images to kill"
@@ -104,6 +104,6 @@ The ENV variable `POSTGRES_HOST` defaults to `db` which is the name used in `doc
 
 The `-p launchpad` parameter for `dup` and `ddown` scopes all containers to the `project` launchpad. This allows you to easily bring all containers up and down.
 
-It is important to note that the `--volumes` flag in alias  `ddown` will remove any associated volumes. In this case the volume for Postgres is deleted each time you run ddown or dup.
+By default `ddown` will simply stop the containers. If you want to nuke the database then run `dbreset` which will bring down the containers and remove the named volume `dbvolume` which the postres container depends on.
 
 In `dup` the flag `--build` is important because it actually re-builds the docker images, if you have any changes, before bringing the containers up.

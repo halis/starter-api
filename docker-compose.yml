@@ -10,6 +10,8 @@ db:
   container_name: db
   restart: always
   build: ./database
+  volumes:
+    - dbvolume:/var/lib/postgresql/data
   expose:
     - "${POSTGRES_PORT}"
   ports:
