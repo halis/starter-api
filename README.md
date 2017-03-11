@@ -17,7 +17,7 @@ To start the PostgreSQL server, enter:
 pg_ctl -D /usr/local/var/postgres start
 
 To initialize the database, enter:
-./database/recreatedb
+`./database/recreatedb`
 
 To start the server, enter:
 npm start
