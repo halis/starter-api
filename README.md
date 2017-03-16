@@ -23,7 +23,7 @@ To initialize the database, enter:
 `./database/recreatedb`
 
 To start the server, enter:
-npm start
+sudo -E npm start
 This will prompt for your password because it is
 using HTTPS on port 443 which is a privileged port.
 
@@ -55,59 +55,42 @@ export POSTGRES_USER=user
 export POSTGRES_PASSWORD=pass
 ```
 
-## Docker Compose
+## Cloud Foundry
 
-To install Docker follow the instructions here: [Installing Docker](https://docs.docker.com/docker-for-mac/install/)
-*NOTE: You could use `brew` to install docker, but that won't give you `docker-compose`, `docker-machine` or the other docker tools.*
+To install Cloud Foundry locally, we are using pcfdev, follow the instructions here:
+https://pivotal.io/platform/pcf-tutorials/getting-started-with-pivotal-cloud-foundry-dev/introduction
 
-Once Docker is installed and running you can proceed with standing up a local stack:
-In a shell run:
-```bash
-dup
-```
-*NOTE: `dup` is an alias. To review the actual command see the `aliases` below*
-*NOTE: The db container expects to expose 5432 to your host machine. If you already have postgres running locally you will need to stop your server to avoid a conflict.*
+The cloud foundry tutorial above will have you do this, but if you restart your computer, run:
+`npm run cf:init`
+This will start the pcfdev VM and login to your dev space.
 
-This will run docker-compose to stand up two containers: `api` and `db`
-*NOTE: These containers know how to talk to each other via docker networking.*
+It is assumed that you have a local postgres database.
+Your local Postgres needs to be configured to listen on all interfaces to work with pcfdev.
+You will need to make the following modifications:
 
-We also **expose the ports** for these containers in the host machine, so you can test locally:
-In a browser visit: https://localhost/project
-*Note: This invokes a REST service to retrieve all the current projects. If this is being run for the first time, press "ADVANCED" and "Proceed to localhost (unsafe)" to allow using HTTPS with this domain.*
+1) Modify `/usr/local/var/postgres/postgresql.conf` to be:
+listen_addresses = '*'
 
-Or you could test the api in Postman:
-GET https://localhost/project
+2) Add the following as the first line in `/usr/local/var/postgres/pg_hba.conf`:
+host    all             all             0.0.0.0/0               trust
 
-Also since the database port is exposed to your host, you can connect to the database in the container with your favorite Postgres client such as pgAdmin.
+Also note that to run your stack locally in CF, you need to set
+`POSTGRES_HOST=host.pcfdev.io`
 
-Here are some useful docker aliases for this project:
-```bash
-# Usage: ddown
-alias ddown="docker-compose -p launchpad down"
-alias dbreset="ddown && docker volume rm dbvolume"
+To start a new API server in a local cloud foundry container:
+`npm run cf:up`
 
-# Usage: dkimages
-alias dkimages="docker rmi $(docker images -f 'dangling=true' -q) || echo No images to kill"
+To delete the API server:
+`npm run cf:down
 
-# Usage: dup
-alias dup="dkimages && ddown && docker-compose -p launchpad up -d --force-recreate --build"
-
-# Usage: dexec db /bin/sh
-alias dexec="docker exec -ti"
-
-# Usage: dlogs api
-alias dlogs="docker logs -f"
-
-# Usage: dps
-alias dps="docker ps -a"
-```
-
-Alpine Linux is used in the containers to keep the size and build times down. Because `sudo` does not come standard, `alpine-sdk` was installed.
-
-The ENV variable `POSTGRES_HOST` defaults to `db` which is the name used in `docker-compose.yml`. Docker adds an entry to `/etc/hosts` in the api container because of the link setup to the db container. This allows you to connect to host `db` via `PGConnection`.
-
-The `-p launchpad` parameter for `dup` and `ddown` scopes all containers to the `project` launchpad. This allows you to easily bring all containers up and down.
-
-By default `ddown` will simply stop the containers. If you want to nuke the database then run `dbreset` which will bring down the containers and remove the named volume `dbvolume` which the postres container depends on.
-
-In `dup` the flag `--build` is important because it actually re-builds the docker images, if you have any changes, before bringing the containers up.
+Other useful CF commands:
+`cf apps`
+`cf logs app-name`
+`cf logs app-name --recent`
+`cf events app-name`
+`cf push app-name`
+`cf push app-name --no-start`
+`cf delete app-name`
+`cf start app-name`
+`cf stop app-name`
+`cf set-env APP_NAME ENV_VAR_NAME ENV_VAR_VALUE`

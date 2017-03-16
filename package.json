@@ -2,6 +2,9 @@
   "name": "starter-api",
   "version": "1.0.0",
   "description": "starter for REST services that work with PostgreSQL",
+  "engines": {
+    "node": "7.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mvolkmann/starter-api.git"
@@ -11,6 +14,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "node-token-auth": "^1.0.0",
+    "nodemon": "^1.11.0",
     "pg": "^6.1.3",
     "postgresql-easy": "^1.1.0",
     "socket.io": "^1.7.3"
@@ -29,11 +33,15 @@
     "lint": "npm-run-all lint:**",
     "lint:js": "eslint --quiet src __tests__ --ext .js,.jsx",
     "postcommit": "npm run _format",
-    "preinstall": "yarn global add nodemon",
     "prepush": "npm run verify",
-    "start": "sudo -E nodemon lib/index.js",
+    "start": "nodemon lib/index.js",
     "test": "react-scripts test --env=jsdom",
-    "verify": "npm run lint && cross-env CI=true npm test"
+    "verify": "npm run lint && cross-env CI=true npm test",
+    "cf:start": "cf dev start",
+    "cf:login": "cf login -u user -p pass -a api.local.pcfdev.io --skip-ssl-validation",
+    "cf:init": "npm-run-all cf:start cf:login",
+    "cf:up": "cf push launchpad-api",
+    "cf:down": "cf delete launchpad-api"
   },
   "license": "MIT",
   "devDependencies": {

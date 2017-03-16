@@ -1,0 +1,788 @@
+
+swagger: '2.0'
+info:
+  title: LaunchPAD API
+  description: API for the LaunchPAD application
+  version: "1.0.0"
+host: velocity-np.ag/launchpad-api
+schemes:
+  - https
+basePath: /
+produces:
+  - application/json
+paths:
+  /agendaTarget:
+    get:
+      summary: AgendaTargets
+      description: |
+        Get a list of agenda targets
+      tags:
+        - Agenda Target
+      responses:
+        200:
+          description: An array of agenda targets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AgendaTarget'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /agendaTarget/{year}/{month}:
+    get:
+      summary: Agenda Target By Year and Month
+      description: |
+        Get an agenda target by year and month
+      tags:
+        - Agenda Target
+      parameters:
+        - name: year
+          in: path
+          type: number
+          required: true
+          description: The year of the meeting
+        - name: month
+          in: path
+          type: number
+          required: true
+          description: The month of the meeting
+      responses:
+        200:
+          description: An agenda target
+          schema:
+            $ref: '#/definitions/AgendaTarget'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /agendaProduct:
+    get:
+      summary: AgendaProducts
+      description: |
+        Get a list of agenda products
+      tags:
+        - Agenda Product
+      responses:
+        200:
+          description: An array of agenda products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AgendaProduct'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /agendaProduct/:year/:month:
+    get:
+      summary: Agenda Product By Year and Month
+      description: |
+        Get an agenda product by year and month
+      tags:
+        - Agenda Product
+      responses:
+        200:
+          description: An agenda product
+          schema:
+            $ref: '#/definitions/AgendaProduct'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /breedingMilestone:
+    get:
+      summary: Breeding Milestones
+      description: |
+        Get a list of breeding milestones
+      tags:
+        - Breeding Milestone
+      responses:
+        200:
+          description: An array of breeding milestones
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BreedingMilestone'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /breedingMilestone/:trialId:
+    get:
+      summary: Breeding Milestone By Trial Id
+      description: |
+        Get a list of breeding milestones for a trial
+      tags:
+        - Breeding Milestone
+      responses:
+        200:
+          description: A breeding milestone
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BreedingMilestone'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /category:
+    get:
+      summary: Categories
+      description: |
+        Get a list of categories
+      tags:
+        - Category
+      responses:
+        200:
+          description: An array of categories
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /category/:code:
+    get:
+      summary: Category By Code
+      description: |
+        Get a category by code
+      tags:
+        - Category
+      responses:
+        200:
+          description: A category
+          schema:
+            $ref: '#/definitions/Category'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /crop:
+    get:
+      summary: Crops
+      description: |
+        Get a list of crops
+      tags:
+        - Crop
+      responses:
+        200:
+          description: An array of crops
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Crop'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /crop/:id:
+    get:
+      summary: Crop By Id
+      description: |
+        Get a crop by id
+      tags:
+        - Crop
+      responses:
+        200:
+          description: A crop
+          schema:
+            $ref: '#/definitions/Crop'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /market:
+    get:
+      summary: Markets
+      description: |
+        Get a list of markets
+      tags:
+        - Market
+      responses:
+        200:
+          description: An array of markets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Market'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /market/:id:
+    get:
+      summary: Market By Id
+      description: |
+        Get an market by id
+      tags:
+        - Market
+      responses:
+        200:
+          description: A market
+          schema:
+            $ref: '#/definitions/Market'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /observation:
+    get:
+      summary: Observations
+      description: |
+        Get a list of observations
+      tags:
+        - Observation
+      responses:
+        200:
+          description: An array of observations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Observation'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /observation/:trialId:
+    get:
+      summary: Observations By Trial Id
+      description: |
+        Get a list of observations by trial id
+      tags:
+        - Observation
+      responses:
+        200:
+          description: A list of observations for the trial
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Observation'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /observationType:
+    get:
+      summary: Observation Types
+      description: |
+        Get a list of observation types
+      tags:
+        - Observation Type
+      responses:
+        200:
+          description: An array of observation types
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ObservationType'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /observationType/:code:
+    get:
+      summary: Observation Type By Code
+      description: |
+        Get an observation type by code
+      tags:
+        - Observation Type
+      responses:
+        200:
+          description: An observation type
+          schema:
+            $ref: '#/definitions/ObservationType'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /owner:
+    get:
+      summary: Owners
+      description: |
+        Get a list of owners
+      tags:
+        - Owner
+      responses:
+        200:
+          description: An array of owners
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Owner'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /owner/:id:
+    get:
+      summary: Owner By Id
+      description: |
+        Get an owner by id
+      tags:
+        - Owner
+      responses:
+        200:
+          description: A owner
+          schema:
+            $ref: '#/definitions/Owner'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /product:
+    get:
+      summary: Products
+      description: |
+        Get a list of products
+      tags:
+        - Product
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /product/:id:
+    get:
+      summary: Product By Id
+      description: |
+        Get a product by id
+      tags:
+        - Product
+      responses:
+        200:
+          description: A product
+          schema:
+            $ref: '#/definitions/Product'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /productTarget:
+    get:
+      summary: ProductTargets
+      description: |
+        Get a list of product targets
+      tags:
+        - Product Target
+      responses:
+        200:
+          description: An array of product targets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductTarget'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /productTarget/byProduct/:productId:
+    get:
+      summary: Product Target By Product Id
+      description: |
+        Get a list of product targets by product id
+      tags:
+        - Product Target
+      responses:
+        200:
+          description: An array of product targets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductTarget'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /productTarget/byTarget/:targetId:
+    get:
+      summary: Product Target By Target Id
+      description: |
+        Get a list of product targets by target id
+      tags:
+        - Product Target
+      responses:
+        200:
+          description: An array of product targets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductTarget'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /target:
+    get:
+      summary: Targets
+      description: |
+        Get a list of targets
+      tags:
+        - Target
+      responses:
+        200:
+          description: An array of targets
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Target'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /target/:id:
+    get:
+      summary: Target By Id
+      description: |
+        Get a target by id
+      tags:
+        - Target
+      responses:
+        200:
+          description: A target
+          schema:
+            $ref: '#/definitions/Target'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /targetGoal:
+    get:
+      summary: Target Goals
+      description: |
+        Get a list of target goals
+      tags:
+        - Target Goal
+      responses:
+        200:
+          description: An array of target goals
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TargetGoal'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /targetGoal/:targetId:
+    get:
+      summary: Target Goal By Target Id
+      description: |
+        Get a target goal by target id
+      tags:
+        - Target Goal
+      responses:
+        200:
+          description: A target goal
+          schema:
+            $ref: '#/definitions/TargetGoal'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /trial:
+    get:
+      summary: Trials
+      description: |
+        Get a list of trials
+      tags:
+        - Trial
+      responses:
+        200:
+          description: An array of trials
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Trial'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /trial/:id:
+    get:
+      summary: Trial By Id
+      description: |
+        Get a trial by id
+      tags:
+        - Trial
+      responses:
+        200:
+          description: A trial
+          schema:
+            $ref: '#/definitions/Trial'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /trialObservation:
+    get:
+      summary: Trial Observations
+      description: |
+        Get a list of trial observations
+      tags:
+        - Trial Observation
+      responses:
+        200:
+          description: An array of trial observations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TrialObservation'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+  /trialObservation/:trialId:
+    get:
+      summary: Observations By Trial Id
+      description: |
+        Get a list of trial observations by trial id
+      tags:
+        - Observation
+      responses:
+        200:
+          description: An array of trial observations by trial id
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TrialObservation'
+        400:
+          description: Bad request
+        500:
+          description: Server error
+definitions:
+  AgendaProduct:
+    type: object
+    properties:
+      year:
+        type: number
+        description: The year of the agenda product
+      month:
+        type: number
+        description: The month of the agenda product
+      productId:
+        type: number
+        description: The foreign key to the product
+      productStatus:
+        type: string
+        description: The status of the agenda product
+      breederNotes:
+        type: string
+        description: The breeder notes of the agenda product
+      seedNotes:
+        type: string
+        description: The seed notes of the agenda product
+      tdNotes:
+        type: string
+        description: The tech dev notes of the agenda product
+      etcNotes:
+        type: string
+        description: The miscellaneous notes of the agenda product
+  AgendaTarget:
+    type: object
+    properties:
+      year:
+        type: number
+        description: The year the target will be reviewed
+      month:
+        type: string
+        description: The month the target will be reviewed
+      targetId:
+        type: number
+        description: The foreign key to the target
+  BreedingMilestone:
+    type: object
+    properties:
+      trialId:
+        type: number
+        description: The foreign key to the trial
+      listOrder:
+        type: number
+        description: The order of the milestone in the list of milestones
+      flagged:
+        type: boolean
+        description: The flagged switch
+      attribute:
+        type: string
+        description: The attribute of the milestone
+      goal:
+        type: string
+        description: The goal of the milestone
+      term:
+        type: string
+        description: The term of the milestone
+  Category:
+    type: object
+    properties:
+      code:
+        type: string
+        description: The code for the category
+      name:
+        type: string
+        description: The name of the category
+  Crop:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the crop
+      name:
+        type: string
+        description: The name of the crop
+  Market:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the market
+      name:
+        type: string
+        description: The name of the market
+  Observation:
+    type: object
+    properties:
+      trialId:
+        type: number
+        description: The foreign key to the trial
+      observationTypeCode:
+        type: string
+        description: The foreign key to the observation type
+      value:
+        type: number
+        description: The value of the observation
+      timestamp:
+        type: number
+        description: The timestamp of the observation
+  ObservationType:
+    type: object
+    properties:
+      code:
+        type: string
+        description: The code of the observation type
+      name:
+        type: string
+        description: The name of the observation type
+      type:
+        type: string
+        description: The type of the observation type
+      unit:
+        type: string
+        description: The unit of measure
+  Owner:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the owner
+      name:
+        type: string
+        description: The name of the owner
+  Product:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the product
+      name:
+        type: string
+        description: The name of the product
+      ownerId:
+        type: number
+        description: The owner of the product
+  ProductTarget:
+    type: object
+    properties:
+      productId:
+        type: number
+        description: The id of the product
+      targetId:
+        type: number
+        description: The id of the target
+  Target:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the target
+      categoryCode:
+        type: string
+        description: The foreign key to the category
+      name:
+        type: string
+        description: The name of the target
+      cropId:
+        type: number
+        description: The foreign key to the crop
+  TargetGoal:
+    type: object
+    properties:
+      targetId:
+        type: number
+        description: The id of the target
+      goal:
+        type: string
+        description: The stated target goal
+  Trial:
+    type: object
+    properties:
+      id:
+        type: number
+        description: The id of the target
+      productId:
+        type: number
+        description: The foreign key to the product
+      startYear:
+        type: number
+        description: The start year of the trial
+      endYear:
+        type: number
+        description: The end year of the trial
+      marketId:
+        type: number
+        description: The foreign key to the market
+      numberWithinProduct:
+        type: number
+        description: The number of the trial within the product
+  TrialObservation:
+    type: object
+    properties:
+      trialId:
+        type: number
+        description: The foreign key to the trial
+      observationTypeCode:
+        type: string
+        description: The foreign key to the observation type
+      weight:
+        type: number
+        description: The weight of the observation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

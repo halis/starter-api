@@ -1,0 +1,8 @@
+---
+applications:
+- name: lpapi
+  memory: 256M
+  instances: 1
+  host: lpapi
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  path: .
