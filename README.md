@@ -14,7 +14,10 @@ ctrl-d
 ````
 
 To start the PostgreSQL server, enter:
-pg_ctl -D /usr/local/var/postgres start
+`pg_ctl -D /usr/local/var/postgres start`
+
+To stop the PostgreSQL server, enter:
+`pg_ctl -D /usr/local/var/postgres stop -m fast`
 
 To initialize the database, enter:
 `./database/recreatedb`

@@ -1,4 +1,5 @@
 db=launchpad
 dropdb $db
 createdb $db
+psql $db -f launchpad.ddl
 psql $db -f tables.ddl
