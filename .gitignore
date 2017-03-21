@@ -2,6 +2,6 @@
 .*.swp
 npm-debug.log
 yarn-error.log
-.env
+lib/env.js
 
 node_modules/
